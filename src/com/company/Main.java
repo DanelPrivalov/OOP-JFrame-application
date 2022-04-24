@@ -4,6 +4,7 @@ import Figures.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import static FileWork.FileOperations.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 //        Считывание файлов
 //        ReadFiguresNameReader();
@@ -37,7 +38,7 @@ public class Main {
 //        System.out.println(f2.toString());
 //        f2.getArea();
 //        f2.getPerimetr();
-//       WriteStringFileWriter(f2);
+//        WriteStringFileWriter(f2);
 
         ArrayList<Point> randomFigure3 = new ArrayList<>(Arrays.asList(p1, p2, p3, p4));
         FigureCreator creator3 = new FigureCreator();
@@ -47,7 +48,11 @@ public class Main {
 //        f3.getPerimetr();
 //        WriteStringFileWriter(f3);
 
-        DateFromFile();
+        // DateFromFile();
+        ArrayList<Figure> testSer= new ArrayList<>(Arrays.asList(f1, f2, f3));
+        fileSerializibleSep(testSer);
 
+        ArrayList<Object> object1 = fileDeSerializibleSep();
+        System.out.println(object1);
     }
 }

@@ -1,6 +1,8 @@
 package Figures;
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable {
     protected double x;
     protected double y;
 

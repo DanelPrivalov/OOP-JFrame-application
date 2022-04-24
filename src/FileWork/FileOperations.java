@@ -7,6 +7,7 @@ import jdk.swing.interop.SwingInterOpUtils;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FileOperations {
@@ -90,5 +91,37 @@ public class FileOperations {
         br.close();
         }
     }
+
+    public static void fileSerializible (ArrayList figurelist) throws IOException {
+        ObjectOutputStream ser = new ObjectOutputStream(new FileOutputStream("Serializible"));
+        ser.writeObject(figurelist);
+        ser.close();
+    }
+
+    public static void fileSerializibleSep (ArrayList figurelist) throws IOException {
+        ObjectOutputStream ser = new ObjectOutputStream(new FileOutputStream("Serializible"));
+        for(var fig: figurelist) {
+            ser.writeObject(fig);
+        }
+        ser.close();
+    }
+
+    public static ArrayList<Object> fileDeSerializible () throws IOException, ClassNotFoundException {
+        ObjectInputStream deser = new ObjectInputStream(new FileInputStream("Serializible"));
+        ArrayList<Object> arrayObjects;
+        arrayObjects = ((ArrayList<Object>)deser.readObject());
+        return arrayObjects;
+    }
+
+    public static ArrayList<Object> fileDeSerializibleSep () throws IOException, ClassNotFoundException {
+        FileInputStream isstream = new FileInputStream("Serializible");
+        ObjectInputStream deser = new ObjectInputStream(isstream);
+        ArrayList<Object> arrayObjects = new ArrayList<>();
+        while (isstream.available()>0){
+            arrayObjects.add((Figure)deser.readObject());
+        }
+        return arrayObjects;
+    }
+
 }
 
