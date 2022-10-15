@@ -1,7 +1,9 @@
 package Figures;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+@JsonIgnoreProperties({"fullPoints"})
 public class Point implements Serializable {
     protected double x;
     protected double y;
